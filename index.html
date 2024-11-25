@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      margin: 20px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .form-container label {
+      font-size: 18px;
+      color: #444;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-container .rating-options {
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+    }
+
+    .form-container .rating-options label {
+      font-size: 16px;
+      color: #555;
+      cursor: pointer;
+      padding: 10px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .form-container .rating-options input[type="radio"] {
+      display: none;
+    }
+
+    .form-container .rating-options input[type="radio"]:checked + label {
+      background-color: #0073b1;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .form-container .rating-options label:hover {
+      background-color: #e2e2e2;
+      transform: scale(1.1);
+    }
+
+    .form-container input[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      background-color: #0073b1;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+
+    .form-container input[type="submit"]:hover {
+      background-color: #005c8e;
+    }
+
+    .form-container input[type="submit"]:active {
+      background-color: #004974;
+    }
+  </style>
+  <script>
+    function handleFormSubmission(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      // Redirect immediately after clicking submit
+      window.location.href = "https://www.linkedin.com/in/purvita-h-85a091b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app";
+
+      // Submit form data to the Google Apps Script URL
+      const form = event.target;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+      })
+      .then(response => {
+        // Optional: Handle response (e.g., display success message)
+        if (!response.ok) {
+          console.error('Error: Unable to submit the form.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Feedback Form</h2>
+    <form action="https://script.google.com/macros/s/AKfycbylGVDUoKSIS2BvJzkDJQtKZxwOwe0HwJ31PhRNwAm_PBtKOg-VPV1aBB4LUEPkIISJig/exec" method="POST" onsubmit="handleFormSubmission(event)">
+      <label for="rating">How was your overall experience at Airro Engineering's stall?</label>
+      <div class="rating-options">
+        <input type="radio" id="rating1" name="rating" value="1">
+        <label for="rating1">1 - 😔 Sad</label>
+
+        <input type="radio" id="rating2" name="rating" value="2">
+        <label for="rating2">2 - 😕 Poor</label>
+
+        <input type="radio" id="rating3" name="rating" value="3">
+        <label for="rating3">3 - 😐 Neutral</label>
+
+        <input type="radio" id="rating4" name="rating" value="4">
+        <label for="rating4">4 - 🙂 Good</label>
+
+        <input type="radio" id="rating5" name="rating" value="5">
+        <label for="rating5">5 - 😄 Excellent</label>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
